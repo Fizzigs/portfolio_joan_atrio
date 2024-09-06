@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+
+import Navbar from './components/Navbar';
+import useNavbarHeight from './hooks/useNavbarHeight';
+import './App.css'; // Incluye los estilos generales
 
 function App() {
+  const [navbarHeight, setNavbarHeight] = useState(0);
+  useNavbarHeight(setNavbarHeight);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <div className="content-wrapper" style={{ paddingTop: `${navbarHeight}px` }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
