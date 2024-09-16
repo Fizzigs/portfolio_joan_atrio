@@ -73,11 +73,45 @@
     filter: blur(0px);
   }
 }
+/* Estilo para la barra de progreso circular en la parte superior izquierda */
+/* src/components/ProgressWheel.css */
+
+.progress-wheel {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 80px;
+  height: 80px;
+  stroke-width: 8;
+  fill: none;
+  z-index: 1000;
+  transition: opacity 0.3s, transform 0.3s; /* Añade transición para opacidad y transformación */
+}
+
+.progress-wheel.hidden {
+  opacity: 0; /* Hace la rueda invisible */
+  transform: scale(0.8); /* Reduce el tamaño para un efecto de desaparición */
+}
+
+.progress-wheel.visible {
+  opacity: 1; /* Hace la rueda visible */
+  transform: scale(1); /* Tamaño normal para un efecto de aparición */
+}
+
+.progress-wheel .bg {
+  stroke: white;
+}
+
+.progress-wheel .progress {
+  stroke: rgb(120, 205, 233); /* Cambia este color según tus preferencias */
+  stroke-dasharray: 0, 100;
+  transition: stroke-dasharray 0.3s;
+}
+
 
 .home-container {
   color: white;
-
-  padding: 0 20px;
+  padding: 0 0;
 }
 
 /* Hero Section */
@@ -98,22 +132,18 @@
   max-width: 50%;
 }
 
-
 .hero-text {
   font-size: 6rem; /* Ajusta el tamaño según necesidad */
   color: white;
   margin: 0;
   animation: fadeIn 2s ease-out, textFadeInOut 5s infinite; /* Aplica ambas animaciones */
   display: inline-block; /* Asegura que el borde y la sombra se apliquen correctamente */
-  padding: 10px; /* Opcional: añade espacio alrededor del texto para el borde */
 }
-
-
 
 .hero-subtext {
   font-size: 3rem;
   color: rgb(120, 205, 233); /* Color naranja para resaltar */
-  margin-top: 10px;
+  margin-top: -20px;
   animation: fadeIn 2s ease-out; /* Aplica la animación de fade-in */
 }
 
@@ -122,6 +152,8 @@
   justify-content: center;
   gap: 20px;
   align-items: center;
+  margin-top: -30px;
+  margin-right: -20px;
 }
 
 .social-icons a,
@@ -156,9 +188,18 @@
   display: flex;
   justify-content: right;
 }
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+  }
 
-
-
+  .hero-image {
+    width: 90%; /* Ajusta el ancho de la imagen en pantallas pequeñas */
+    align-items: center;
+    max-width: 300px;
+    margin-top: 60px; /* Añadir un margen para separar la imagen del texto */
+  }
+}
 /* About Me Section */
 .about-section {
   padding: 40px 0;
@@ -290,11 +331,12 @@
   font-size: 4rem;
   color: white; /* Color blanco por defecto */
   transition: color 0.3s ease; /* Transición más lenta para el cambio de color */
+  
 }
 
 /* Colores específicos de los iconos al hacer hover */
 .technology-item:hover i.fa-js {
-  color: #f7df1e; /* Color de JavaScript */
+  color: #f5e35c; /* Color de JavaScript */
 }
 
 .technology-item:hover i.fa-react {
@@ -322,9 +364,9 @@
 }
 .technology-item:hover i.fa-github {
   color: black; /* Color de MySQL */
-}
-.technology-item i.fa-dot-net {
-  color: #007acc; /* Color específico para .NET */
+} 
+.technology-item:hover i.fa-python {
+  color:  #daaf17;
 }
 
 .technology-item {
@@ -468,6 +510,12 @@
   box-shadow: 0 10px 25px rgb(120, 205, 233); /* Sombra con un color brillante */
   border-color: rgb(120, 205, 233); /* Borde más oscuro en hover */
 }
+.animated-svg {
+  width: 50px; /* Ajusta el tamaño según lo que necesites */
+  height: 50px;
+  margin-top: 10px; /* Ajusta márgenes si es necesario */
+}
+
 
 .hidden {
   display: none; /* Ocultar proyectos no relevantes */
@@ -606,7 +654,6 @@
   font-size: 1rem;
   line-height: 1.6;
 }
-
 
 /* Footer */
 .footer {

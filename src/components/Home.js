@@ -1,9 +1,10 @@
 import './Home.css';
-import React from 'react';
-import { Toaster, toast } from 'sonner'
+import React, { useRef, useEffect, useState } from 'react';
+import { Toaster, toast } from 'sonner';
 import backgroundImage from '../assets/images/foto_personal.jpeg'; // Ajusta la ruta según tu estructura de carpetas
 import project1Image from '../assets/images/match.png'; // Ajusta la ruta según tu estructura de carpetas
 import project2Image from '../assets/images/gamer_heaven.png'; // Ajusta la ruta según tu estructura de carpetas
+import { scroll} from 'framer-motion';
 
 const Home = () => {
   const handleCopyEmail = () => {
@@ -15,8 +16,63 @@ const Home = () => {
     });
   };
 
+  const ProgressWheel = ({ type = 'default' }) => {
+    const progressRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(true);
+  
+    useEffect(() => {
+      const updateProgress = (progress) => {
+        if (progressRef.current) {
+          const dasharray = progress * 100; // Completa el círculo
+          const dashoffset = 100 - dasharray; // Ajuste para la animación
+  
+          // Actualiza el stroke-dasharray y stroke-dashoffset
+          progressRef.current.style.strokeDasharray = `${dasharray} ${100 - dasharray}`;
+          progressRef.current.style.strokeDashoffset = dashoffset;
+  
+          // Controla la visibilidad basado en el progreso
+          setIsVisible(progress > 0);
+        }
+      };
+  
+      const unsubscribe = scroll(updateProgress);
+  
+      return () => unsubscribe();
+    }, []);
+  
+    const getClassName = () => {
+      switch (type) {
+        case 'filled':
+          return 'progress-filled';
+        case 'dotted':
+          return 'progress-dotted';
+        case 'neon':
+          return 'progress-neon';
+        case 'futuristic':
+          return 'progress-futuristic';
+        default:
+          return 'progress-default';
+      }
+    };
+  
+    return (
+      <svg
+        width="50"
+        height="50"
+        viewBox="0 0 100 100"
+        className={`progress-wheel ${getClassName()}`}
+        style={{ opacity: isVisible ? 1 : 0 }}
+      >
+        <circle cx="50" cy="50" r="30" className="bg" />
+        <circle cx="50" cy="50" r="30" ref={progressRef} className="progress" />
+      </svg>
+    );
+  };
+
   return (
     <div className="home-container">
+      {/* Barra de progreso circular en la parte superior izquierda */}
+      <ProgressWheel />
       {/* Hero Section */}
       <section id="hero" className="hero-section">
         <div className="hero-content">
@@ -33,7 +89,7 @@ const Home = () => {
               <i className="fas fa-envelope"></i>
             </button>
             <a href="https://drive.google.com/file/d/1EBUiKlL3nUTN8n6u0JU6eJ86FvuGwwro/view" target="_blank" rel="noopener noreferrer">
-            <i className="fas fa-file"></i> 
+              <i className="fas fa-file"></i> 
             </a>
           </div>
         </div>
@@ -42,20 +98,19 @@ const Home = () => {
         </div>
       </section>
 
-
       {/* About Me Section */}
       <section id="about" className="about-section">
         <h2>Sobre mí</h2>
         <p>
-            Soy un desarrollador <span class="highlight">Full Stack</span> con experiencia en diversas tecnologías. 
-            Me apasiona crear <span class="highlight">proyectos</span> que resuelvan <span class="highlight">problemas del mundo real</span>.
-          </p>
-          <p>
-            Mi enfoque está en el desarrollo tanto del <span class="highlight">frontend</span> como del <span class="highlight">backend</span>, lo que me permite crear aplicaciones completas y funcionales. Disfruto trabajando con diferentes tecnologías para construir productos innovadores.
-          </p>
-          <p>
-            En mi tiempo libre, me gusta explorar nuevas tecnologías y mejorar mis habilidades en programación. También disfruto mucho de <span class="highlight">mejorar diseños</span> y el aprendizaje continuo.
-          </p>
+          Soy un desarrollador <span className="highlight">Full Stack</span> con experiencia en diversas tecnologías tanto front end como back end, 
+          lo que me ha permitido desarrollar competencias <span className="highlight">claves </span> en colaboración, resolución de problemas y pensamiento crítico.
+        </p>
+        <p>
+          En cada proyecto, no solo me enfoco en crear aplicaciones <span className="highlight">funcionales</span> y <span className="highlight">completas</span>, sino también en optimizar el diseño y la experiecnia de usuario.
+        </p>
+        <p>
+          He trabajado de forma efectiva en entornos multidisciplinares, lo que me ha ayudado a fortalecer habilidades de <span className="highlight">comunicación</span> y <span className="highlight">gestión de equipos</span>.
+        </p>
       </section>
 
       {/* Experience Section */}
@@ -83,7 +138,6 @@ const Home = () => {
         {/* Add more experience items similarly */}
       </section>
 
-
       <section id="projects" className="projects-section">
         <h2 className="projects-title">Proyectos</h2>
         <div className="project-cards">
@@ -96,8 +150,8 @@ const Home = () => {
               <i className="fas fa-fire"></i>
             </div>
             <a href="https://github.com/Fizzigs/proyecto_match" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-github github-icon"></i> 
-            </a>
+              <i className="fab fa-github github-icon"></i>
+            </a>        
           </div>
 
           <div className="project-card" data-techs="js react html css firebase">
@@ -118,9 +172,7 @@ const Home = () => {
         </div>
       </section>
 
-
       {/* Technologies Section */}
-
       <section id="technologies" className="technologies-section">
         <h2 className="technologies-title">Tecnologías</h2>
         <div className="technologies-list">
@@ -128,6 +180,7 @@ const Home = () => {
             <i className="fab fa-js"></i>
             <span className="tech-name">JavaScript</span>
           </div>
+
           <div className="technology-item">
             <i className="fab fa-react"></i>
             <span className="tech-name">React</span>
@@ -141,10 +194,13 @@ const Home = () => {
             <span className="tech-name">CSS3</span>
           </div>
           <div className="technology-item">
+            <i className="fab fa-python"></i>
+            <span className="tech-name">Python</span>
+          </div>
+          <div className="technology-item">
             <i className="fab fa-flutter"></i>
             <span className="tech-name">Flutter</span>
           </div>
-          
           <div className="technology-item">
             <i className="fas fa-fire"></i>
             <span className="tech-name">Firebase</span>
@@ -153,58 +209,57 @@ const Home = () => {
             <i className="fas fa-database"></i>
             <span className="tech-name">MySql</span>
           </div>
-
           <div className="technology-item">
-          <i className="fab fa-github"></i>
-          <span className="tech-name">Github</span>
+              <i className="fab fa-github"></i>
+            <span className="tech-name">
+              Github
+            </span>
           </div>
         </div>
       </section>
 
-
       {/* Formation Section */}
-        <section id="formation" className="formation-section">
-          <h2 className="formation-title">Formación</h2>
-          <div className="formation-item">
-            <div className="formation-timeline">
-              <div className="timeline-circle"></div>
-              <div className="timeline-line"></div>
-            </div>
-            <div className="formation-content">
-              <div className="formation-header">
-                <h3 className="formation-name">Desarrollo de aplicaciones multiplataforma</h3>
-                <span className="formation-company">Prat Educació</span>
-              </div>
-              <span className="formation-date">2023 - 2024 (2 años)</span>
-              <p className="formation-description">
-                Curso enfocado en el desarrollo de aplicaciones multiplataforma, abarcando tecnologías modernas y prácticas para la creación de soluciones software eficientes.
-              </p>
-            </div>
+      <section id="formation" className="formation-section">
+        <h2 className="formation-title">Formación</h2>
+        <div className="formation-item">
+          <div className="formation-timeline">
+            <div className="timeline-circle"></div>
+            <div className="timeline-line"></div>
           </div>
-          <div className="formation-item">
-            <div className="formation-timeline">
-              <div className="timeline-circle"></div>
-              <div className="timeline-line"></div>
+          <div className="formation-content">
+            <div className="formation-header">
+              <h3 className="formation-name">Desarrollo de aplicaciones multiplataforma</h3>
+              <span className="formation-company">Prat Educació</span>
             </div>
-            <div className="formation-content">
-              <div className="formation-header">
-                <h3 className="formation-name">Sistemas microinformáticos y redes</h3>
-                <span className="formation-company">Salesians de Sarria</span>
-              </div>
-              <span className="formation-date">2021 - 2022 (2 años)</span>
-              <p className="formation-description">
-                Formación en administración de sistemas microinformáticos y redes, con énfasis en mantenimiento de hardware y software, así como gestión de redes.
-              </p>
-            </div>
+            <span className="formation-date">2023 - 2024 (2 años)</span>
+            <p className="formation-description">
+              Curso enfocado en el desarrollo de aplicaciones multiplataforma, abarcando tecnologías modernas y prácticas para la creación de soluciones software eficientes.
+            </p>
           </div>
-        </section>
+        </div>
+        <div className="formation-item">
+          <div className="formation-timeline">
+            <div className="timeline-circle"></div>
+            <div className="timeline-line"></div>
+          </div>
+          <div className="formation-content">
+            <div className="formation-header">
+              <h3 className="formation-name">Sistemas microinformáticos y redes</h3>
+              <span className="formation-company">Salesians de Sarria</span>
+            </div>
+            <span className="formation-date">2021 - 2022 (2 años)</span>
+            <p className="formation-description">
+              Formación en administración de sistemas microinformáticos y redes, con énfasis en mantenimiento de hardware y software, así como gestión de redes.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer id="footer" className="footer">
         <p>© 2024 Joan Atrio. All Rights Reserved.</p>
       </footer>
       <Toaster />
-
     </div>
   );
 };

@@ -1,62 +1,163 @@
+/* Estilos generales del navbar */
 .navbar {
-  color: white; /* Color del texto */
+  color: white;
   font-size: 16px;
-  padding: 20px 0; /* Ajusta el espaciado interno superior e inferior */
-  display: flex; /* Flexbox para alineación */
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  position: fixed; /* Fija el navbar en la parte superior */
-  width: 100%; /* Ocupa todo el ancho */
-  top: 0; /* Posición fija en la parte superior */
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
-  box-sizing: border-box; /* Incluye padding y border en el ancho total */
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box;
 }
-
+.navbar-toggle-icon{
+  top: 25px;
+  right: 5px;
+  align-items: center;
+}
 .navbar ul {
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
-  border-radius: 8px; /* Bordes redondeados */
-  background-color: rgba(255, 255, 255, 0.1); /* Fondo blanco con opacidad */
-  backdrop-filter: blur(15px); /* Desenfoque del fondo */
-  -webkit-backdrop-filter: blur(20px); /* Compatibilidad con Safari */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra sutil */
-  list-style: none; /* Elimina puntos de la lista */
-  padding: 0; /* Elimina padding predeterminado */
-  margin: 0; /* Elimina margin predeterminado */
-  display: flex; /* Fila horizontal */
-  justify-content: flex-end; /* Alinea a la derecha */
-  align-items: center; /* Centra verticalmente los elementos de la lista */
+  z-index: 1000;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .navbar li {
-  margin: 0 20px; /* Espaciado entre elementos de la lista (ajustado) */
-  position: relative; /* Posiciona el contenedor del borde */
+  margin: 0 20px;
+  position: relative;
 }
 
 .navbar a {
-  color: white; /* Color del texto */
-  text-decoration: none; /* Elimina subrayado */
-  padding: 10px 20px; /* Espaciado interno de los enlaces */
-  display: block; /* Ocupa todo el espacio del li */
-  border-radius: 8px; /* Bordes redondeados */
-  position: relative; /* Posiciona el borde */
-  z-index: 1; /* Asegura que el enlace esté por encima del borde */
-  overflow: hidden; /* Oculta el desbordamiento del borde */
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .navbar a::before {
-  content: ''; /* Añade un pseudo-elemento para el borde */
-  position: absolute; /* Posición absoluta para que el borde no afecte el flujo del documento */
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  border: 4px solid rgb(120, 205, 233); /* Borde gris claro */
-  border-radius: 8px; /* Bordes redondeados */
-  transform: scale(0); /* Inicialmente invisible */
-  transition: transform 0.1s ease; /* Transición suave */
-  z-index: -1; /* Pone el borde detrás del enlace */
+  border: 4px solid rgb(120, 205, 233);
+  border-radius: 8px;
+  transform: scale(0);
+  transition: transform 0.1s ease;
+  z-index: -1;
 }
 
 .navbar a:hover::before {
-  transform: scale(1); /* Escala el borde en el hover */
+  transform: scale(1);
+}
+
+/* Estilos para el botón de menú hamburguesa */
+.navbar-toggle {
+  display: none; /* Oculto por defecto */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 1001;
+}
+
+.navbar-toggle-icon {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.navbar-toggle-icon::before,
+.navbar-toggle-icon::after {
+  content: '';
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  transition: transform 0.3s;
+}
+
+.navbar-toggle-icon::before {
+  top: -8px;
+}
+
+.navbar-toggle-icon::after {
+  top: 8px;
+}
+
+/* Menú desplegable */
+.navbar-menu {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-menu {
+  display: flex;
+}
+
+.navbar-menu li {
+  margin: 0 10px;
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+  .navbar ul {
+    display: none; /* Oculta el menú por defecto en pantallas pequeñas */
+    position: absolute;
+    top: 60px; /* Ajusta según la altura del navbar */
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    flex-direction: column;
+    width: 200px;
+    border-radius: 8px;
+  }
+
+  .navbar ul.active {
+    display: flex; /* Muestra el menú cuando está activo */
+  }
+
+  .navbar-toggle {
+    display: block; /* Muestra el botón en pantallas pequeñas */
+  }
+
+  .navbar-toggle-icon.active {
+    background-color: transparent;
+  }
+
+  .navbar-toggle-icon.active::before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+
+  .navbar-toggle-icon.active::after {
+    transform: rotate(-45deg);
+    top: 0;
+  }
+
+  .navbar-menu li {
+    margin: 10px 0;
+  }
 }
