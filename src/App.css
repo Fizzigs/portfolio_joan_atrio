@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 /* Fondo oscuro con un toque de luz de neón */
-/* Fondo oscuro con un toque de luz de neón */
 html, body {
   scroll-behavior: smooth;
   height: 100%;
@@ -16,13 +15,3 @@ html, body {
   background-repeat: no-repeat; /* Evita que el fondo se repita */
   
 }
-
-
-
-/* Define la animación para el gradiente */
-@keyframes cambiar {
-  0% { background-position: 0% 0%; }s
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-

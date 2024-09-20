@@ -1,4 +1,6 @@
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+@import url('https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css');
+
 /* Estilos para la barra de desplazamiento en Webkit (Chrome, Safari) */
 ::-webkit-scrollbar {
   width: 12px; /* Ancho de la barra de desplazamiento */
@@ -103,7 +105,7 @@
 }
 
 .progress-wheel .progress {
-  stroke: rgb(120, 205, 233); /* Cambia este color según tus preferencias */
+  stroke: rgb(120, 205, 233);
   stroke-dasharray: 0, 100;
   transition: stroke-dasharray 0.3s;
 }
@@ -133,7 +135,7 @@
 }
 
 .hero-text {
-  font-size: 6rem; /* Ajusta el tamaño según necesidad */
+  font-size: 6rem;
   color: white;
   margin: 0;
   animation: fadeIn 2s ease-out, textFadeInOut 5s infinite; /* Aplica ambas animaciones */
@@ -142,39 +144,38 @@
 
 .hero-subtext {
   font-size: 3rem;
-  color: rgb(120, 205, 233); /* Color naranja para resaltar */
-  margin-top: -20px;
+  background: linear-gradient(to right,  rgb(120, 205, 233), #98FF98); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  text-align: center;  margin-top: -20px;
   animation: fadeIn 2s ease-out; /* Aplica la animación de fade-in */
 }
 
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 35px;
   align-items: center;
   margin-top: -30px;
   margin-right: -20px;
 }
 
+
 .social-icons a,
 .social-icons .email-copy-button {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: white;
-  transition: transform 0.3s ease;
   background: none;
   border: none;
   cursor: pointer;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Espacio entre el icono y el texto */
 }
 
 .social-icons a:hover,
 .social-icons .email-copy-button:hover {
-  transform: scale(1.2);
+  transform: scale(1.4);
   color: rgb(120, 205, 233);
+  transition: transform 0.3s ease;
 }
+
 .hero-image {
   max-width: 60%;
   border-radius: 20px;
@@ -201,6 +202,13 @@
   }
 }
 /* About Me Section */
+.about-title{
+  font-size: 2.5rem;
+  background: linear-gradient(to right,  rgb(120, 205, 233), #98FF98); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 50px;
+}
 .about-section {
   padding: 40px 0;
   text-align: center;
@@ -210,15 +218,12 @@
 
 .about-section h2 {
   font-size: 2.5rem; /* Reduce el tamaño de la fuente del título */
-  margin-bottom: 20px;
   color: rgb(120, 205, 233); /* Color naranja para resaltar */
-
-
 }
 
 .about-section p {
   font-size: 1.2rem; /* Reduce el tamaño de la fuente del párrafo */
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   line-height: 1.6; /* Mejora la legibilidad del texto */
 }
 
@@ -235,9 +240,10 @@
 
 .experience-title {
   font-size: 2.5rem;
-  color: rgb(120, 205, 233);
-  text-align: center;
-  margin-bottom: 2rem;
+  background: linear-gradient(to right,  rgb(120, 205, 233), #98FF98); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  text-align: center;
+  margin-bottom: 50px;
 }
 
 .experience-item {
@@ -308,14 +314,23 @@
   padding: 40px 0;
   text-align: center;
 }
-.technologies-title{
-  color: rgb(120, 205, 233);
+
+.technologies-title {
   font-size: 1.5rem;
+  background: linear-gradient(to right,  rgb(120, 205, 233), #98FF98); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 50px;
 }
+
+.technologies-subtitles {
+  font-size: 1.5rem;
+  color: rgb(120, 205, 233);
+}
+
 
 .technologies-section h2 {
   font-size: 3rem;
-  margin-bottom: 50px;
 }
 
 .technologies-list {
@@ -336,37 +351,49 @@
 
 /* Colores específicos de los iconos al hacer hover */
 .technology-item:hover i.fa-js {
-  color: #f5e35c; /* Color de JavaScript */
+  color: #f5e35c;
 }
 
 .technology-item:hover i.fa-react {
-  color: #61dafb; /* Color de React */
+  color: #61dafb;
 }
 
 .technology-item:hover i.fa-html5 {
-  color: #e34c26; /* Color de HTML5 */
+  color: #e34c26;
 }
 
 .technology-item:hover i.fa-css3-alt {
-  color: #1572b6; /* Color de CSS3 */
+  color: #1572b6;
 }
 
-.technology-item:hover i.fa-flutter {
-  color: #084679; /* Color de Flutter */
+.technology-item:hover i.devicon-flutter-plain {
+  color: #084679;
 }
 
-.technology-item:hover i.fa-fire {
-  color: #ffca28; /* Color de Firebase */
+.technology-item:hover i.devicon-firebase-plain {
+  color: #ffca28;
 }
 
-.technology-item:hover i.fa-database {
-  color: #003b6f; /* Color de MySQL */
+.technology-item:hover i.devicon-mysql-plain {
+  color: #003b6f;
 }
 .technology-item:hover i.fa-github {
-  color: black; /* Color de MySQL */
+  color: black;
 } 
 .technology-item:hover i.fa-python {
   color:  #daaf17;
+}
+.technology-item:hover i.fa-java {
+  color:  red;
+}
+.technology-item:hover i.devicon-vscode-plain {
+  color:  #3e6a91;
+}
+.technology-item:hover i.devicon-androidstudio-plain {
+  color:  green;
+}
+.technology-item:hover i.devicon-dotnetcore-plain {
+  color:  purple;
 }
 
 .technology-item {
@@ -422,6 +449,121 @@
   display: block;
 }
 
+/* Home.css */
+
+/* Estilos para la sección de tecnologías */
+.technologies-section {
+  padding: 20px;
+}
+
+.technologies-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.technology-item {
+  cursor: pointer;
+  margin: 10px;
+  text-align: center;
+}
+
+/* Estilos del Modal */
+.technology-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: backdrop-filter 0.3s ease-in; /* Transición suave */
+  z-index: 1000;
+}
+.technology-modal.open{
+  backdrop-filter: blur(5px);
+} 
+
+.modal-content {
+  color: #fff;
+  background: #333;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  max-width: 40%;
+  max-height: 70%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.modal-content h3 {
+  margin-top: 0;
+}
+
+/* Nueva clase para proyectos en el modal */
+.modal-projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacio entre los proyectos */
+}
+
+.modal-project-card {
+  background: #444;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+
+.modal-project-card img {
+  width: 50%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.modal-project-card h4 {
+  margin: 10px 0;
+}
+
+.modal-project-card p {
+  text-align: center;
+}
+
+
+.modal-content ul {
+  list-style: disc;
+  margin-left: 20px;
+}
+
+.technology-modal.open .modal-content {
+  transform: scale(1); /* Escalado al abrir */
+}
+.modal.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.close {
+    position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 36px;
+  cursor: pointer;
+  transition: transform 0.1s ease, color 0.1s ease; /* Animación suave */
+  z-index: 1020; /* Asegúrate de que la cruz esté por encima del contenido */
+}
+
+.close:hover {
+  transform: scale(1) rotate(90deg); /* Aumenta el tamaño y rota el ícono */
+  color: #f00; /* Cambia el color al pasar el cursor */
+}
+
+
 /* Social Icons */
 .social-links {
   text-align: center;
@@ -432,28 +574,6 @@
   font-size: 2rem;
   color: white;
   margin-bottom: 20px;
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.social-icons a,
-.social-icons .email-copy-button {
-  font-size: 2rem;
-  color: white;
-  transition: transform 0.3s ease;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.social-icons a:hover,
-.social-icons .email-copy-button:hover {
-  transform: scale(1.1);
-  color: rgb(120, 205, 233);
 }
 
 .email-copy-button {
@@ -479,8 +599,10 @@
 
 .projects-title {
   font-size: 2.5rem;
-  color: rgb(120, 205, 233);
-  margin-bottom: 20px;
+  background: linear-gradient(to right,  rgb(120, 205, 233), #98FF98); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 50px;
 }
 
 .project-cards {
@@ -584,9 +706,10 @@
 
 .formation-title {
   font-size: 2.5rem;
-  color: rgb(120, 205, 233);
-  text-align: center;
-  margin-bottom: 2rem;
+  background: linear-gradient(to right,  rgb(120, 205, 233), #98FF98); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  text-align: center;
+  margin-bottom: 50px;
   position: relative;
 }
 
