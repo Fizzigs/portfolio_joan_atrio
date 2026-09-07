@@ -1,87 +1,41 @@
 import "./Home.css";
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 import { Toaster, toast } from "sonner";
 import backgroundImage from "../assets/images/foto_home_page.png";
 import project1Image from "../assets/images/match.png";
 import project2Image from "../assets/images/gamer_heaven.png";
-import { scroll, useAnimation } from "framer-motion";
 import links from "../common/globals/globals";
+import ProgressWheel from "./ProgressWheel";
+
+const copyText = async (value) => {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(value);
+    return;
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = value;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+  const copied = document.execCommand("copy");
+  document.body.removeChild(textarea);
+
+  if (!copied) {
+    throw new Error("Copy command failed");
+  }
+};
 
 const Home = () => {
-  const [modalOpen] = useState(false);
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (modalOpen) {
-      controls.start({ opacity: 1, scale: 1 });
-    } else {
-      controls.start({ opacity: 0, scale: 0.9 });
+  const handleCopyEmail = async () => {
+    try {
+      await copyText(links.email);
+      toast.success("¡Correo copiado al portapapeles!");
+    } catch {
+      toast.error("Error al copiar el correo");
     }
-  }, [modalOpen, controls]);
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(links.email).then(
-      () => {
-        toast.success("¡Correo copiado al portapapeles!");
-      },
-      () => {
-        toast.error("Error al copiar el correo");
-      }
-    );
-  };
-
-  const ProgressWheel = ({ type = "default" }) => {
-    const progressRef = useRef(null);
-    const [isVisible, setIsVisible] = useState(true);
-
-    useEffect(() => {
-      const updateProgress = (progress) => {
-        if (progressRef.current) {
-          const dasharray = progress * 100;
-          const dashoffset = 100 - dasharray;
-
-          progressRef.current.style.strokeDasharray = `${dasharray} ${
-            100 - dasharray
-          }`;
-          progressRef.current.style.strokeDashoffset = dashoffset;
-
-          setIsVisible(progress > 0);
-        }
-      };
-
-      const unsubscribe = scroll(updateProgress);
-
-      return () => unsubscribe();
-    }, []);
-
-    const getClassName = () => {
-      switch (type) {
-        case "filled":
-          return "progress-filled";
-        case "dotted":
-          return "progress-dotted";
-        case "neon":
-          return "progress-neon";
-        case "futuristic":
-          return "progress-futuristic";
-        default:
-          return "progress-default";
-      }
-    };
-
-    return (
-      <svg
-        width="50"
-        height="50"
-        viewBox="0 0 100 100"
-        className={`progress-wheel ${getClassName()}`}
-        style={{ opacity: isVisible ? 1 : 0 }}
-        aria-hidden="true"
-      >
-        <circle cx="50" cy="50" r="30" className="bg" />
-        <circle cx="50" cy="50" r="30" ref={progressRef} className="progress" />
-      </svg>
-    );
   };
 
   return (
@@ -164,7 +118,7 @@ const Home = () => {
             recorrido en entornos <span className="highlight">web</span>. He
             trabajado integrando <span className="highlight">APIs REST</span> y{" "}
             <span className="highlight">bases de datos</span>, con especial foco
-            en la correcta comunicación entre el los sistemas , cuidando tanto la
+            en la correcta comunicación entre los sistemas, cuidando tanto la
             estructura como la mantenibilidad del código.
           </p>
           <p className="text-base sm:text-lg leading-relaxed mb-8 md:mb-12">
@@ -426,7 +380,7 @@ const Home = () => {
             <div className="technology-item relative flex flex-col items-center cursor-pointer transition-transform duration-200 hover:-translate-y-2">
               <i className="fab fa-gitlab text-4xl sm:text-5xl text-white"></i>
               <span className="tech-name absolute -bottom-8 text-white text-sm whitespace-nowrap opacity-0 translate-y-2 transition-all duration-300 pointer-events-none">
-                Gitlab
+                GitLab
               </span>
             </div>
           </div>

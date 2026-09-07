@@ -1,23 +1,28 @@
-// src/hooks/useNavbarHeight.js
-import { useEffect } from 'react';
+import { useLayoutEffect } from "react";
 
 const useNavbarHeight = (setNavbarHeight) => {
-  useEffect(() => {
+  useLayoutEffect(() => {
+    const navbar = document.querySelector(".navbar");
+    if (!navbar) {
+      return undefined;
+    }
+
     const updateNavbarHeight = () => {
-      const navbar = document.querySelector('.navbar');
-      if (navbar) {
-        setNavbarHeight(navbar.offsetHeight);
-      }
+      const height = navbar.offsetHeight;
+      setNavbarHeight(height);
+      document.documentElement.style.setProperty("--navbar-height", `${height}px`);
     };
 
-    // Actualiza la altura al montar el componente
     updateNavbarHeight();
+    window.addEventListener("resize", updateNavbarHeight);
 
-    // Actualiza la altura en redimensionamiento de ventana
-    window.addEventListener('resize', updateNavbarHeight);
+    const observer = new ResizeObserver(updateNavbarHeight);
+    observer.observe(navbar);
 
-    // Limpia el evento en desmontaje del componente
-    return () => window.removeEventListener('resize', updateNavbarHeight);
+    return () => {
+      window.removeEventListener("resize", updateNavbarHeight);
+      observer.disconnect();
+    };
   }, [setNavbarHeight]);
 };
 
