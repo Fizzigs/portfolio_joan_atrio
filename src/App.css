@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 /* Fondo oscuro con un toque de luz de neón */
+html {
+  scroll-padding-top: var(--navbar-height, 5rem);
+}
+
 html, body {
   scroll-behavior: smooth;
   height: 100%;

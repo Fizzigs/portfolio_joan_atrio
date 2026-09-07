@@ -12,11 +12,7 @@
   z-index: 1000;
   box-sizing: border-box;
 }
-.navbar-toggle-icon{
-  top: 25px;
-  right: 5px; 
-  align-items: center;
-}
+
 .navbar ul {
   z-index: 1000;
   border-radius: 8px;
@@ -49,7 +45,7 @@
 }
 
 .navbar a::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -68,17 +64,23 @@
 
 /* Estilos para el botón de menú hamburguesa */
 .navbar-toggle {
-  display: none; /* Oculto por defecto */
+  display: none;
   background: transparent;
   border: none;
   cursor: pointer;
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 12px;
+  top: 12px;
   z-index: 1001;
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar-toggle-icon {
+  display: block;
   width: 30px;
   height: 3px;
   background-color: white;
@@ -88,7 +90,7 @@
 
 .navbar-toggle-icon::before,
 .navbar-toggle-icon::after {
-  content: '';
+  content: "";
   width: 30px;
   height: 3px;
   background-color: white;
@@ -105,26 +107,12 @@
   top: 8px;
 }
 
-/* Menú desplegable */
-.navbar-menu {
-  display: flex;
-  gap: 20px;
-}
-
-.navbar-menu {
-  display: flex;
-}
-
-.navbar-menu li {
-  margin: 0 10px;
-}
-
 /* Media queries para pantallas pequeñas */
 @media (max-width: 950px) {
   .navbar ul {
-    display: none; /* Oculta el menú por defecto en pantallas pequeñas */
+    display: none;
     position: absolute;
-    top: 60px; /* Ajusta según la altura del navbar */
+    top: 60px;
     right: 20px;
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
@@ -136,11 +124,11 @@
   }
 
   .navbar ul.active {
-    display: flex; /* Muestra el menú cuando está activo */
+    display: flex;
   }
 
   .navbar-toggle {
-    display: block; /* Muestra el botón en pantallas pequeñas */
+    display: flex;
   }
 
   .navbar-toggle-icon.active {
@@ -155,9 +143,5 @@
   .navbar-toggle-icon.active::after {
     transform: rotate(-45deg);
     top: 0;
-  }
-
-  .navbar-menu li {
-    margin: 10px 0;
   }
 }
