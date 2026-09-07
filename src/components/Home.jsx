@@ -4,20 +4,10 @@ import { Toaster, toast } from "sonner";
 import backgroundImage from "../assets/images/foto_home_page.png";
 import project1Image from "../assets/images/match.png";
 import project2Image from "../assets/images/gamer_heaven.png";
-import { scroll, useAnimation } from "framer-motion";
+import { scroll } from "framer-motion";
 import links from "../common/globals/globals";
 
 const Home = () => {
-  const [modalOpen] = useState(false);
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (modalOpen) {
-      controls.start({ opacity: 1, scale: 1 });
-    } else {
-      controls.start({ opacity: 0, scale: 0.9 });
-    }
-  }, [modalOpen, controls]);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(links.email).then(
